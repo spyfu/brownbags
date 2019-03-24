@@ -1,26 +1,20 @@
 {
   "name": "slidedeck",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5",
-    "spectacle-code-slide": "^0.5.2",
-    "spectacle-scripts": "2.3.0"
-  },
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "mdx-deck deck.mdx"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mdx-deck": "1.10.2",
+    "mdx-deck-code-surfer": "^0.5.5",
+    "raw-loader": "^2.0.0"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "dependencies": {
+    "mermaid": "^8.0.0",
+    "styled-components": "^4.2.0"
+  }
 }

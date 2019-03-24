@@ -1,0 +1,59 @@
+import { future } from 'mdx-deck/themes'
+import { CodeSurfer } from 'mdx-deck-code-surfer';
+import oceanicNext from "prism-react-renderer/themes/oceanicNext"
+import { code } from 'example.js';
+import { chart } from './charts/testchart.js';
+import { Notes } from 'mdx-deck';
+import { Invert, Split, FullScreenCode } from 'mdx-deck/layouts';
+import Mermaid from './components/mermaid.js';
+
+[//]: # (GLOBAL THEME SETUP)
+
+export const theme = {
+    ...future,
+    codeSurfer: {
+        ...oceanicNext,
+        showNumbers: true,
+        dark: true
+    }
+}
+
+
+
+[//]: # (SLIDES)
+
+# What we're going to cover
+
+<Notes>Only in presenter mode</Notes>
+
+---
+
+export default Invert
+
+# Actor Model Intro
+
+---
+
+# Next item
+
+---
+
+export default Invert
+
+# Mermaid slide
+
+<Mermaid 
+    chart={chart}
+/>
+
+---
+
+<CodeSurfer 
+    code={code} 
+    theme={oceanicNext}
+    title='egads' 
+    notes= 'wat'
+    steps={[
+        { range: [2, 7], notes: "we'll start with an example from petabridge" },
+    ]}
+/>
