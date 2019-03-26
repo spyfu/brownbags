@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\projects\brownbags\akka_basics\code\Crawler.Web" t="IncludeRecursive">
+      <e p="Actors" t="Include">
+        <e p="Crawler.cs" t="Include" />
+        <e p="SignalRActor.cs" t="Include" />
+        <e p="SystemActors.cs" t="Include" />
+      </e>
+      <e p="AkkaStartupTasks.cs" t="Include" />
+      <e p="appsettings.Development.json" t="Include" />
+      <e p="appsettings.json" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="Controllers" t="Include">
+        <e p="HomeController.cs" t="Include" />
+      </e>
+      <e p="Crawler.Web.csproj" t="IncludeRecursive" />
+      <e p="Hubs" t="Include">
+        <e p="CrawlHub.cs" t="Include" />
+        <e p="CrawlHubHelper.cs" t="Include" />
+      </e>
+      <e p="libman.json" t="Include" />
+      <e p="Models" t="Include">
+        <e p="ErrorViewModel.cs" t="Include" />
+      </e>
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.1" t="Include">
+            <e p="Crawler.Web.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Program.cs" t="Include" />
+      <e p="Properties" t="Include">
+        <e p="launchSettings.json" t="Include" />
+      </e>
+      <e p="Startup.cs" t="Include" />
+      <e p="Views" t="Include">
+        <e p="_ViewImports.cshtml" t="Include" />
+        <e p="_ViewStart.cshtml" t="Include" />
+        <e p="Home" t="Include">
+          <e p="About.cshtml" t="Include" />
+          <e p="Contact.cshtml" t="Include" />
+          <e p="Index.cshtml" t="Include" />
+          <e p="Privacy.cshtml" t="Include" />
+        </e>
+        <e p="Shared" t="Include">
+          <e p="_CookieConsentPartial.cshtml" t="Include" />
+          <e p="_Layout.cshtml" t="Include" />
+          <e p="_ValidationScriptsPartial.cshtml" t="Include" />
+          <e p="Error.cshtml" t="Include" />
+        </e>
+      </e>
+      <e p="wwwroot" t="Include">
+        <e p="css" t="Include">
+          <e p="site.css" t="Include" />
+          <e p="site.min.css" t="Include" />
+        </e>
+        <e p="favicon.ico" t="Include" />
+        <e p="images" t="Include">
+          <e p="banner1.svg" t="Include" />
+          <e p="banner2.svg" t="Include" />
+          <e p="banner3.svg" t="Include" />
+        </e>
+        <e p="js" t="Include">
+          <e p="site.js" t="Include" />
+          <e p="site.min.js" t="Include" />
+        </e>
+        <e p="lib" t="Include">
+          <e p="bootstrap" t="Include">
+            <e p="dist" t="Include">
+              <e p="css" t="Include">
+                <e p="bootstrap-grid.css" t="Include" />
+                <e p="bootstrap-grid.css.map" t="Include" />
+                <e p="bootstrap-grid.min.css" t="Include" />
+                <e p="bootstrap-grid.min.css.map" t="Include" />
+                <e p="bootstrap-reboot.css" t="Include" />
+                <e p="bootstrap-reboot.css.map" t="Include" />
+                <e p="bootstrap-reboot.min.css" t="Include" />
+                <e p="bootstrap-reboot.min.css.map" t="Include" />
+                <e p="bootstrap.css" t="Include" />
+                <e p="bootstrap.css.map" t="Include" />
+                <e p="bootstrap.min.css" t="Include" />
+                <e p="bootstrap.min.css.map" t="Include" />
+              </e>
+              <e p="js" t="Include">
+                <e p="bootstrap.bundle.js" t="Include" />
+                <e p="bootstrap.bundle.js.map" t="Include" />
+                <e p="bootstrap.bundle.min.js" t="Include" />
+                <e p="bootstrap.bundle.min.js.map" t="Include" />
+                <e p="bootstrap.js" t="Include" />
+                <e p="bootstrap.js.map" t="Include" />
+                <e p="bootstrap.min.js" t="Include" />
+                <e p="bootstrap.min.js.map" t="Include" />
+              </e>
+            </e>
+            <e p="js" t="Include">
+              <e p="dist" t="Include">
+                <e p="alert.js" t="Include" />
+                <e p="alert.js.map" t="Include" />
+                <e p="button.js" t="Include" />
+                <e p="button.js.map" t="Include" />
+                <e p="carousel.js" t="Include" />
+                <e p="carousel.js.map" t="Include" />
+                <e p="collapse.js" t="Include" />
+                <e p="collapse.js.map" t="Include" />
+                <e p="dropdown.js" t="Include" />
+                <e p="dropdown.js.map" t="Include" />
+                <e p="index.js" t="Include" />
+                <e p="index.js.map" t="Include" />
+                <e p="modal.js" t="Include" />
+                <e p="modal.js.map" t="Include" />
+                <e p="popover.js" t="Include" />
+                <e p="popover.js.map" t="Include" />
+                <e p="scrollspy.js" t="Include" />
+                <e p="scrollspy.js.map" t="Include" />
+                <e p="tab.js" t="Include" />
+                <e p="tab.js.map" t="Include" />
+                <e p="toast.js" t="Include" />
+                <e p="toast.js.map" t="Include" />
+                <e p="tooltip.js" t="Include" />
+                <e p="tooltip.js.map" t="Include" />
+                <e p="util.js" t="Include" />
+                <e p="util.js.map" t="Include" />
+              </e>
+              <e p="src" t="Include">
+                <e p="alert.js" t="Include" />
+                <e p="button.js" t="Include" />
+                <e p="carousel.js" t="Include" />
+                <e p="collapse.js" t="Include" />
+                <e p="dropdown.js" t="Include" />
+                <e p="index.js" t="Include" />
+                <e p="modal.js" t="Include" />
+                <e p="popover.js" t="Include" />
+                <e p="scrollspy.js" t="Include" />
+                <e p="tab.js" t="Include" />
+                <e p="toast.js" t="Include" />
+                <e p="tools" t="Include">
+                  <e p="sanitizer.js" t="Include" />
+                </e>
+                <e p="tooltip.js" t="Include" />
+                <e p="util.js" t="Include" />
+              </e>
+            </e>
+            <e p="LICENSE" t="Include" />
+            <e p="package.json" t="Include" />
+            <e p="README.md" t="Include" />
+            <e p="scss" t="Include">
+              <e p="_alert.scss" t="Include" />
+              <e p="_badge.scss" t="Include" />
+              <e p="_breadcrumb.scss" t="Include" />
+              <e p="_button-group.scss" t="Include" />
+              <e p="_buttons.scss" t="Include" />
+              <e p="_card.scss" t="Include" />
+              <e p="_carousel.scss" t="Include" />
+              <e p="_close.scss" t="Include" />
+              <e p="_code.scss" t="Include" />
+              <e p="_custom-forms.scss" t="Include" />
+              <e p="_dropdown.scss" t="Include" />
+              <e p="_forms.scss" t="Include" />
+              <e p="_functions.scss" t="Include" />
+              <e p="_grid.scss" t="Include" />
+              <e p="_images.scss" t="Include" />
+              <e p="_input-group.scss" t="Include" />
+              <e p="_jumbotron.scss" t="Include" />
+              <e p="_list-group.scss" t="Include" />
+              <e p="_media.scss" t="Include" />
+              <e p="_mixins.scss" t="Include" />
+              <e p="_modal.scss" t="Include" />
+              <e p="_nav.scss" t="Include" />
+              <e p="_navbar.scss" t="Include" />
+              <e p="_pagination.scss" t="Include" />
+              <e p="_popover.scss" t="Include" />
+              <e p="_print.scss" t="Include" />
+              <e p="_progress.scss" t="Include" />
+              <e p="_reboot.scss" t="Include" />
+              <e p="_root.scss" t="Include" />
+              <e p="_spinners.scss" t="Include" />
+              <e p="_tables.scss" t="Include" />
+              <e p="_toasts.scss" t="Include" />
+              <e p="_tooltip.scss" t="Include" />
+              <e p="_transitions.scss" t="Include" />
+              <e p="_type.scss" t="Include" />
+              <e p="_utilities.scss" t="Include" />
+              <e p="_variables.scss" t="Include" />
+              <e p="bootstrap-grid.scss" t="Include" />
+              <e p="bootstrap-reboot.scss" t="Include" />
+              <e p="bootstrap.scss" t="Include" />
+              <e p="mixins" t="Include">
+                <e p="_alert.scss" t="Include" />
+                <e p="_background-variant.scss" t="Include" />
+                <e p="_badge.scss" t="Include" />
+                <e p="_border-radius.scss" t="Include" />
+                <e p="_box-shadow.scss" t="Include" />
+                <e p="_breakpoints.scss" t="Include" />
+                <e p="_buttons.scss" t="Include" />
+                <e p="_caret.scss" t="Include" />
+                <e p="_clearfix.scss" t="Include" />
+                <e p="_deprecate.scss" t="Include" />
+                <e p="_float.scss" t="Include" />
+                <e p="_forms.scss" t="Include" />
+                <e p="_gradients.scss" t="Include" />
+                <e p="_grid-framework.scss" t="Include" />
+                <e p="_grid.scss" t="Include" />
+                <e p="_hover.scss" t="Include" />
+                <e p="_image.scss" t="Include" />
+                <e p="_list-group.scss" t="Include" />
+                <e p="_lists.scss" t="Include" />
+                <e p="_nav-divider.scss" t="Include" />
+                <e p="_pagination.scss" t="Include" />
+                <e p="_reset-text.scss" t="Include" />
+                <e p="_resize.scss" t="Include" />
+                <e p="_screen-reader.scss" t="Include" />
+                <e p="_size.scss" t="Include" />
+                <e p="_table-row.scss" t="Include" />
+                <e p="_text-emphasis.scss" t="Include" />
+                <e p="_text-hide.scss" t="Include" />
+                <e p="_text-truncate.scss" t="Include" />
+                <e p="_transition.scss" t="Include" />
+                <e p="_visibility.scss" t="Include" />
+              </e>
+              <e p="utilities" t="Include">
+                <e p="_align.scss" t="Include" />
+                <e p="_background.scss" t="Include" />
+                <e p="_borders.scss" t="Include" />
+                <e p="_clearfix.scss" t="Include" />
+                <e p="_display.scss" t="Include" />
+                <e p="_embed.scss" t="Include" />
+                <e p="_flex.scss" t="Include" />
+                <e p="_float.scss" t="Include" />
+                <e p="_overflow.scss" t="Include" />
+                <e p="_position.scss" t="Include" />
+                <e p="_screenreaders.scss" t="Include" />
+                <e p="_shadows.scss" t="Include" />
+                <e p="_sizing.scss" t="Include" />
+                <e p="_spacing.scss" t="Include" />
+                <e p="_stretched-link.scss" t="Include" />
+                <e p="_text.scss" t="Include" />
+                <e p="_visibility.scss" t="Include" />
+              </e>
+              <e p="vendor" t="Include">
+                <e p="_rfs.scss" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="date.format.js" t="Include" />
+          <e p="jquery" t="Include">
+            <e p=".bower.json" t="Include" />
+            <e p="dist" t="Include">
+              <e p="jquery.js" t="Include" />
+              <e p="jquery.min.js" t="Include" />
+              <e p="jquery.min.map" t="Include" />
+            </e>
+            <e p="LICENSE.txt" t="Include" />
+          </e>
+          <e p="jquery-validation" t="Include">
+            <e p=".bower.json" t="Include" />
+            <e p="dist" t="Include">
+              <e p="additional-methods.js" t="Include" />
+              <e p="additional-methods.min.js" t="Include" />
+              <e p="jquery.validate.js" t="Include" />
+              <e p="jquery.validate.min.js" t="Include" />
+            </e>
+            <e p="LICENSE.md" t="Include" />
+          </e>
+          <e p="jquery-validation-unobtrusive" t="Include">
+            <e p=".bower.json" t="Include" />
+            <e p="jquery.validate.unobtrusive.js" t="Include" />
+            <e p="jquery.validate.unobtrusive.min.js" t="Include" />
+            <e p="LICENSE.txt" t="Include" />
+          </e>
+          <e p="signalr" t="Include">
+            <e p="dist" t="Include">
+              <e p="browser" t="Include">
+                <e p="signalr.js" t="Include" />
+                <e p="signalr.min.js" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="vue" t="Include">
+            <e p="dist" t="Include">
+              <e p="README.md" t="Include" />
+              <e p="vue.common.dev.js" t="Include" />
+              <e p="vue.common.js" t="Include" />
+              <e p="vue.common.prod.js" t="Include" />
+              <e p="vue.esm.browser.js" t="Include" />
+              <e p="vue.esm.browser.min.js" t="Include" />
+              <e p="vue.esm.js" t="Include" />
+              <e p="vue.js" t="Include" />
+              <e p="vue.min.js" t="Include" />
+              <e p="vue.runtime.common.dev.js" t="Include" />
+              <e p="vue.runtime.common.js" t="Include" />
+              <e p="vue.runtime.common.prod.js" t="Include" />
+              <e p="vue.runtime.esm.js" t="Include" />
+              <e p="vue.runtime.js" t="Include" />
+              <e p="vue.runtime.min.js" t="Include" />
+            </e>
+            <e p="LICENSE" t="Include" />
+            <e p="package.json" t="Include" />
+            <e p="README.md" t="Include" />
+            <e p="src" t="Include">
+              <e p="compiler" t="Include">
+                <e p="codeframe.js" t="Include" />
+                <e p="codegen" t="Include">
+                  <e p="events.js" t="Include" />
+                  <e p="index.js" t="Include" />
+                </e>
+                <e p="create-compiler.js" t="Include" />
+                <e p="directives" t="Include">
+                  <e p="bind.js" t="Include" />
+                  <e p="index.js" t="Include" />
+                  <e p="model.js" t="Include" />
+                  <e p="on.js" t="Include" />
+                </e>
+                <e p="error-detector.js" t="Include" />
+                <e p="helpers.js" t="Include" />
+                <e p="index.js" t="Include" />
+                <e p="optimizer.js" t="Include" />
+                <e p="parser" t="Include">
+                  <e p="entity-decoder.js" t="Include" />
+                  <e p="filter-parser.js" t="Include" />
+                  <e p="html-parser.js" t="Include" />
+                  <e p="index.js" t="Include" />
+                  <e p="text-parser.js" t="Include" />
+                </e>
+                <e p="to-function.js" t="Include" />
+              </e>
+              <e p="core" t="Include">
+                <e p="components" t="Include">
+                  <e p="index.js" t="Include" />
+                  <e p="keep-alive.js" t="Include" />
+                </e>
+                <e p="config.js" t="Include" />
+                <e p="global-api" t="Include">
+                  <e p="assets.js" t="Include" />
+                  <e p="extend.js" t="Include" />
+                  <e p="index.js" t="Include" />
+                  <e p="mixin.js" t="Include" />
+                  <e p="use.js" t="Include" />
+                </e>
+                <e p="index.js" t="Include" />
+                <e p="instance" t="Include">
+                  <e p="events.js" t="Include" />
+                  <e p="index.js" t="Include" />
+                  <e p="init.js" t="Include" />
+                  <e p="inject.js" t="Include" />
+                  <e p="lifecycle.js" t="Include" />
+                  <e p="proxy.js" t="Include" />
+                  <e p="render-helpers" t="Include">
+                    <e p="bind-dynamic-keys.js" t="Include" />
+                    <e p="bind-object-listeners.js" t="Include" />
+                    <e p="bind-object-props.js" t="Include" />
+                    <e p="check-keycodes.js" t="Include" />
+                    <e p="index.js" t="Include" />
+                    <e p="render-list.js" t="Include" />
+                    <e p="render-slot.js" t="Include" />
+                    <e p="render-static.js" t="Include" />
+                    <e p="resolve-filter.js" t="Include" />
+                    <e p="resolve-scoped-slots.js" t="Include" />
+                    <e p="resolve-slots.js" t="Include" />
+                  </e>
+                  <e p="render.js" t="Include" />
+                  <e p="state.js" t="Include" />
+                </e>
+                <e p="observer" t="Include">
+                  <e p="array.js" t="Include" />
+                  <e p="dep.js" t="Include" />
+                  <e p="index.js" t="Include" />
+                  <e p="scheduler.js" t="Include" />
+                  <e p="traverse.js" t="Include" />
+                  <e p="watcher.js" t="Include" />
+                </e>
+                <e p="util" t="Include">
+                  <e p="debug.js" t="Include" />
+                  <e p="env.js" t="Include" />
+                  <e p="error.js" t="Include" />
+                  <e p="index.js" t="Include" />
+                  <e p="lang.js" t="Include" />
+                  <e p="next-tick.js" t="Include" />
+                  <e p="options.js" t="Include" />
+                  <e p="perf.js" t="Include" />
+                  <e p="props.js" t="Include" />
+                </e>
+                <e p="vdom" t="Include">
+                  <e p="create-component.js" t="Include" />
+                  <e p="create-element.js" t="Include" />
+                  <e p="create-functional-component.js" t="Include" />
+                  <e p="helpers" t="Include">
+                    <e p="extract-props.js" t="Include" />
+                    <e p="get-first-component-child.js" t="Include" />
+                    <e p="index.js" t="Include" />
+                    <e p="is-async-placeholder.js" t="Include" />
+                    <e p="merge-hook.js" t="Include" />
+                    <e p="normalize-children.js" t="Include" />
+                    <e p="normalize-scoped-slots.js" t="Include" />
+                    <e p="resolve-async-component.js" t="Include" />
+                    <e p="update-listeners.js" t="Include" />
+                  </e>
+                  <e p="modules" t="Include">
+                    <e p="directives.js" t="Include" />
+                    <e p="index.js" t="Include" />
+                    <e p="ref.js" t="Include" />
+                  </e>
+                  <e p="patch.js" t="Include" />
+                  <e p="vnode.js" t="Include" />
+                </e>
+              </e>
+              <e p="platforms" t="Include">
+                <e p="web" t="Include">
+                  <e p="compiler" t="Include">
+                    <e p="directives" t="Include">
+                      <e p="html.js" t="Include" />
+                      <e p="index.js" t="Include" />
+                      <e p="model.js" t="Include" />
+                      <e p="text.js" t="Include" />
+                    </e>
+                    <e p="index.js" t="Include" />
+                    <e p="modules" t="Include">
+                      <e p="class.js" t="Include" />
+                      <e p="index.js" t="Include" />
+                      <e p="model.js" t="Include" />
+                      <e p="style.js" t="Include" />
+                    </e>
+                    <e p="options.js" t="Include" />
+                    <e p="util.js" t="Include" />
+                  </e>
+                  <e p="entry-compiler.js" t="Include" />
+                  <e p="entry-runtime-with-compiler.js" t="Include" />
+                  <e p="entry-runtime.js" t="Include" />
+                  <e p="entry-server-basic-renderer.js" t="Include" />
+                  <e p="entry-server-renderer.js" t="Include" />
+                  <e p="runtime" t="Include">
+                    <e p="class-util.js" t="Include" />
+                    <e p="components" t="Include">
+                      <e p="index.js" t="Include" />
+                      <e p="transition-group.js" t="Include" />
+                      <e p="transition.js" t="Include" />
+                    </e>
+                    <e p="directives" t="Include">
+                      <e p="index.js" t="Include" />
+                      <e p="model.js" t="Include" />
+                      <e p="show.js" t="Include" />
+                    </e>
+                    <e p="index.js" t="Include" />
+                    <e p="modules" t="Include">
+                      <e p="attrs.js" t="Include" />
+                      <e p="class.js" t="Include" />
+                      <e p="dom-props.js" t="Include" />
+                      <e p="events.js" t="Include" />
+                      <e p="index.js" t="Include" />
+                      <e p="style.js" t="Include" />
+                      <e p="transition.js" t="Include" />
+                    </e>
+                    <e p="node-ops.js" t="Include" />
+                    <e p="patch.js" t="Include" />
+                    <e p="transition-util.js" t="Include" />
+                  </e>
+                  <e p="server" t="Include">
+                    <e p="compiler.js" t="Include" />
+                    <e p="directives" t="Include">
+                      <e p="index.js" t="Include" />
+                      <e p="model.js" t="Include" />
+                      <e p="show.js" t="Include" />
+                    </e>
+                    <e p="modules" t="Include">
+                      <e p="attrs.js" t="Include" />
+                      <e p="class.js" t="Include" />
+                      <e p="dom-props.js" t="Include" />
+                      <e p="index.js" t="Include" />
+                      <e p="style.js" t="Include" />
+                    </e>
+                    <e p="util.js" t="Include" />
+                  </e>
+                  <e p="util" t="Include">
+                    <e p="attrs.js" t="Include" />
+                    <e p="class.js" t="Include" />
+                    <e p="compat.js" t="Include" />
+                    <e p="element.js" t="Include" />
+                    <e p="index.js" t="Include" />
+                    <e p="style.js" t="Include" />
+                  </e>
+                </e>
+                <e p="weex" t="Include">
+                  <e p="compiler" t="Include">
+                    <e p="directives" t="Include">
+                      <e p="index.js" t="Include" />
+                      <e p="model.js" t="Include" />
+                    </e>
+                    <e p="index.js" t="Include" />
+                    <e p="modules" t="Include">
+                      <e p="append.js" t="Include" />
+                      <e p="class.js" t="Include" />
+                      <e p="index.js" t="Include" />
+                      <e p="props.js" t="Include" />
+                      <e p="recycle-list" t="Include">
+                        <e p="component-root.js" t="Include" />
+                        <e p="component.js" t="Include" />
+                        <e p="index.js" t="Include" />
+                        <e p="recycle-list.js" t="Include" />
+                        <e p="text.js" t="Include" />
+                        <e p="v-bind.js" t="Include" />
+                        <e p="v-for.js" t="Include" />
+                        <e p="v-if.js" t="Include" />
+                        <e p="v-on.js" t="Include" />
+                        <e p="v-once.js" t="Include" />
+                      </e>
+                      <e p="style.js" t="Include" />
+                    </e>
+                  </e>
+                  <e p="entry-compiler.js" t="Include" />
+                  <e p="entry-framework.js" t="Include" />
+                  <e p="entry-runtime-factory.js" t="Include" />
+                  <e p="runtime" t="Include">
+                    <e p="components" t="Include">
+                      <e p="index.js" t="Include" />
+                      <e p="richtext.js" t="Include" />
+                      <e p="transition-group.js" t="Include" />
+                      <e p="transition.js" t="Include" />
+                    </e>
+                    <e p="directives" t="Include">
+                      <e p="index.js" t="Include" />
+                    </e>
+                    <e p="index.js" t="Include" />
+                    <e p="modules" t="Include">
+                      <e p="attrs.js" t="Include" />
+                      <e p="class.js" t="Include" />
+                      <e p="events.js" t="Include" />
+                      <e p="index.js" t="Include" />
+                      <e p="style.js" t="Include" />
+                      <e p="transition.js" t="Include" />
+                    </e>
+                    <e p="node-ops.js" t="Include" />
+                    <e p="patch.js" t="Include" />
+                    <e p="recycle-list" t="Include">
+                      <e p="render-component-template.js" t="Include" />
+                      <e p="virtual-component.js" t="Include" />
+                    </e>
+                    <e p="text-node.js" t="Include" />
+                  </e>
+                  <e p="util" t="Include">
+                    <e p="element.js" t="Include" />
+                    <e p="index.js" t="Include" />
+                    <e p="parser.js" t="Include" />
+                  </e>
+                </e>
+              </e>
+              <e p="server" t="Include">
+                <e p="bundle-renderer" t="Include">
+                  <e p="create-bundle-renderer.js" t="Include" />
+                  <e p="create-bundle-runner.js" t="Include" />
+                  <e p="source-map-support.js" t="Include" />
+                </e>
+                <e p="create-basic-renderer.js" t="Include" />
+                <e p="create-renderer.js" t="Include" />
+                <e p="optimizing-compiler" t="Include">
+                  <e p="codegen.js" t="Include" />
+                  <e p="index.js" t="Include" />
+                  <e p="modules.js" t="Include" />
+                  <e p="optimizer.js" t="Include" />
+                  <e p="runtime-helpers.js" t="Include" />
+                </e>
+                <e p="render-context.js" t="Include" />
+                <e p="render-stream.js" t="Include" />
+                <e p="render.js" t="Include" />
+                <e p="template-renderer" t="Include">
+                  <e p="create-async-file-mapper.js" t="Include" />
+                  <e p="index.js" t="Include" />
+                  <e p="parse-template.js" t="Include" />
+                  <e p="template-stream.js" t="Include" />
+                </e>
+                <e p="util.js" t="Include" />
+                <e p="webpack-plugin" t="Include">
+                  <e p="client.js" t="Include" />
+                  <e p="server.js" t="Include" />
+                  <e p="util.js" t="Include" />
+                </e>
+                <e p="write.js" t="Include" />
+              </e>
+              <e p="sfc" t="Include">
+                <e p="parser.js" t="Include" />
+              </e>
+              <e p="Shared" t="Include">
+                <e p="constants.js" t="Include" />
+                <e p="util.js" t="Include" />
+              </e>
+            </e>
+            <e p="types" t="Include">
+              <e p="index.d.ts" t="Include" />
+              <e p="options.d.ts" t="Include" />
+              <e p="plugin.d.ts" t="Include" />
+              <e p="vnode.d.ts" t="Include" />
+              <e p="vue.d.ts" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+    </e>
+    <e p="C:\Users\tim\.Rider2018.3\config\scratches" t="IncludeRecursive" />
+    <e p="C:\Users\tim\.Rider2018.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\tim\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_Crawler.-1378537874.00" t="ExcludeRecursive" />
+  </component>
+</project>

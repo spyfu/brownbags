@@ -1,0 +1,198 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Demo Web Scraper</h1>
+    <p>Akka.NET Spyfu brownbag</p>
+</div>
+
+<div class="row">
+    <div class="input-group">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="button" id="btnQuery">Query</button>
+        </span>
+        <input type="text" class="form-control" placeholder="Crawl domain..." id="crawlDomain">
+    </div>
+    <div class="container" id="app"></div>
+</div>
+
+@section Scripts
+{
+    <script src="lib/signalr/dist/browser/signalr.js"></script>
+    <script src="lib/date.format.js"></script>
+    <script src="lib/vue/dist/vue.min.js"></script>
+
+    <script>
+        // global state (yes, I know, I'm terrible)
+        window.jobs = [];
+        window.messages = [];
+
+        var Jobs = {
+            template: `
+            <div class='jobs container'>
+                <button v-on:click='startAll' v-if='jobs.length >= 1' type='button' class='btn btn-danger' style='margin-bottom: 15px; margin-top: 15px;'>Start All</button>
+                <div class='row' style='margin-bottom: 15px; margin-top: 15px;' v-for='job in jobs'>
+                    <div class='col'>
+                        <div class='card shadow' style='background-color: goldenrod;' :style='{ backgroundColor: (job.status == "error") ? "FireBrick" : (job.status == "done") ? "LightGreen" : (job.status == "todo") ? "LightSteelBlue" : "PaleGoldenrod" }'>
+                            <div class='card-header'>
+                                {{ job.uri }}
+                                <button type='button' class='close' v-on:click='remove(job)'>&times;</button>
+                            </div>
+                            <div class='card-body'>
+                                <h5 v-if='job.internalLinks.length > 0'>Internal Links</h5>
+                                <ul>
+                                    <li v-for='link in job.internalLinks'>{{ link }}</li>
+                                </ul>
+                                <h5 v-if='job.externalLinks.length > 0'>External Links</h5>
+                                <ul>
+                                    <li v-for='link in job.externalLinks'>{{ link }}</li>
+                                </ul>
+                            </div>
+                            <div class='card-footer text-right'>
+                                <button type='button' class='btn btn-info' v-on:click='start(job)'>Start</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `,
+            props: {
+                jobs: { default: [] }
+            },
+            computed: {
+                rows: function() {
+                    return this.jobs.reduce((accumulator, job, index) => {
+                            if (index % 4 === 0) {
+                                accumulator.push([job]);
+                            } else {
+                                accumulator[accumulator.length - 1].push(job);
+                            }
+
+                            return accumulator;
+                        },
+                        []);
+                },
+            },
+            methods: {
+                remove: function(domain) {
+                    var index = window.jobs.indexOf(domain);
+                    if (index !== -1) {
+                        window.jobs.splice(index, 1);
+                    }
+                },
+                start: function(domain) {
+                    window.chat.send('StartCrawl', domain.uri);
+                },
+                startAll: function() {
+                    this.jobs.forEach(job => {
+                        if (job.status == 'todo') {
+                            window.chat.send('StartCrawl', job.uri);
+                        }
+                    });
+                }
+            }
+        }
+
+        window.app = new Vue({
+            el: '#app',
+            components: {
+                jobs: Jobs,
+            },
+            data() {
+                return {
+                    uris: window.jobs,
+                }
+            },
+            template: `<jobs :jobs='uris'></jobs>`,
+        });
+
+        $(function() {
+            // Reference the auto-generated proxy for the hub.
+            var chat = new signalR.HubConnectionBuilder().withUrl("/hubs/crawlHub").build();
+            window.chat = chat;
+            // Create a function that the hub can call back to display messages.
+            chat.on("writeStatus",
+                function(message) {
+                    addMessage(message);
+                });
+
+            chat.on("startCrawl",
+                function(domain) {
+                    addJob(domain);
+                });
+
+            chat.on("setLinks",
+                function(domain, links, isInternal) {
+                    console.log('setLinks received: ', links);
+                    var job = window.jobs.find(job => job.uri == domain);
+                    console.log('job: ', job);
+                    if (job) {
+                        if (isInternal) {
+                            job.internalLinks = links;
+                        } else {
+                            job.externalLinks = links;
+                        }
+                    }
+                });
+
+            chat.on("setStatus",
+                function(domain, status) {
+                    console.log('setStatus received: ', status, domain);
+                    var job = window.jobs.find(job => job.uri == domain);
+                    if (job) {
+                        job.status = status.toLowerCase();
+                    }
+                });
+
+            chat.on("setError",
+                function(domain, error) {
+                    console.log('setError received: ', domain, error);
+                    var job = window.jobs.find(job => job.uri == domain);
+                    if (job) {
+                        job.status = 'error';
+                        job.error = error;
+                    }
+                });
+
+
+            chat.start().then(function() {
+                $('#btnQuery').click(formHandler);
+                $('#crawlDomain').keypress(function(e) {
+                    if (e.which == 13) {
+                        formHandler();
+                        return false;
+                    }
+                });
+
+                function formHandler() {
+                    // add job
+                    var domain = $('#crawlDomain').val();
+                    addJob(domain);
+                    //call the StartCrawl method on the hub
+                    //chat.send("StartCrawl", domain);
+
+                    $('#crawlDomain').val('').focus();
+                };
+            });
+
+            function addJob(domain, status) {
+                status = status ? status : 'todo';
+                console.log('adding domain: ', domain);
+                window.jobs.push({
+                    uri: domain,
+                    internalLinks: [],
+                    externalLinks: [],
+                    status: status,
+                    errorMessage: ''
+                });
+            }
+
+            function addMessage(message) {
+                window.messages.unshift(message);
+            }
+        });
+    </script>
+}
+
+
