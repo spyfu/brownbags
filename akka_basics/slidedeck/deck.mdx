@@ -1,8 +1,15 @@
 import { condensed } from 'mdx-deck/themes'
 import { CodeSurfer } from 'mdx-deck-code-surfer';
 import darcula from "prism-react-renderer/themes/vsDarkPlus"
-import { code } from './codeSamples/example.js';
+import { actorSystem } from './codeSamples/actorSystem.js';
+import { actorAndProps } from './codeSamples/actorInstantiation.js';
+import { simpleActor } from './codeSamples/simpleActor.js';
+import { receiveActor } from './codeSamples/receiveActor.js';
+import { behaviorActor } from './codeSamples/behaviorActor.js';
+import { asyncActor } from './codeSamples/asyncActor.js';
+import { routerActor } from './codeSamples/routerActor.js';
 import { chart } from './charts/testchart.js';
+import { akkaHeirarchy } from './charts/akkaHeirarchy.js';
 import { Notes, Appear, Head } from 'mdx-deck';
 import { Invert, Split, SplitRight, FullScreenCode } from 'mdx-deck/layouts';
 import Mermaid from './components/mermaid.js';
@@ -38,25 +45,17 @@ export default Invert
 
 ---
 
-export default Split
-
-<div>
-
 # What we're going to cover
 * Actor Model
 * Akka.Net
 * Routing and Worker Pools
 
-</div>
-
-<div>
-
 # Things we won't cover
 * Akka.Net Persistance
 * Akka.Net Remote / Clustering
 * Akka.Net Testing
-
-</div>
+* Supervision Strategies
+* HOCON
 
 <Notes>Only in presenter mode</Notes>
 
@@ -72,33 +71,273 @@ export default Invert
     <p> Each actor will only process one message at a time. Messages are (generally) processed in the order they are received (not necessarily the order they were sent.) </p>
     <p> Actors can be on the same machine, or spread accross many machines. </p>
     <p> The actor model makes both concurrency and distributed workloads easier. </p>
+    <p>Actors can easily create children to handle dangerous tasks</p>
 </Appear>
 
 ---
 
 # Akka.Net
+Port of the Akka actor model framework from Java / Scala.
 
+---
+export default Invert
+
+# Actor System
 <Appear>
-    <p></p>
+    <p>An actor system must be created to contain actors.</p>
+    <p>Actors can communicate within other actors in the system.</p>
+    <p>Actors can communicate between actor systems.</p>
 </Appear>
+
+---
+
+<CodeSurfer
+    code={actorSystem}
+    title='ActorSystem Intantiation'
+    steps={[
+        { range: [1, 6] },
+        { tokens: {4: [2,3,4]}, notes: "It's important to use the create method, rather than constructing via new."},
+        { tokens: {4: [5,6,7]}, notes: "ActorSystem.Create takes the name of the system as it's first param, optional config second."}
+    ]}
+/>
+
+---
+export default Invert
+
+# Messages
 
 ---
 
 export default Invert
 
-# Mermaid slide
+# Actors and Props
+<Appear>
+    <p>Props are similar to in React or Vue. They are a "recipe" for an Actor.</p>
+    <p>Each Actor must have a unique name in their actor system.</p>
+    <p>Each Actor has an address (more on this later)</p>
+    <p>Actors have a mailbox (queue) of received messages.</p>
+</Appear>
 
-<Mermaid 
-    chart={chart}
+---
+
+<CodeSurfer
+    code={actorAndProps}
+    title='Actor Initialization and Props'
+    steps={[
+        { range: [1, 7] },
+        { lines: [4], notes: "Creating Props"},
+        { tokens: {4: [4,5,6]}, notes: "It's important to use the create method, rather than constructing via new."},
+        { tokens: {4: [7,8,9]}, notes: "Actor Type"},
+        { tokens: {4: [10,11]}, notes: "Any dependencies would need to be passed in here (or handled by DI)"},
+        { lines: [5], notes: "Instantiating Actor"},
+        { tokens: {5: [2,3,4]}, notes: "If you were creating a child actor, you would use Contex.ActorOf()"},
+        { tokens: {5: [6]}, notes: "Actor Props"},
+        { tokens: {5: [8,9]}, notes: "Actor name (must be unique)"}
+    ]}
+/>
+
+---
+export default Invert
+
+# Actor Types
+* UntypedActor
+    * Simple Actor to setup. Code is a bit less clean.
+    * Does not require specifying messages types the Actor will receive.
+
+
+* ReceiveActor
+    * Generally preferred Actor type.
+    * Allows you to easily specify handlers by message type.
+    * Supports Behaviors and Stashes.
+
+---
+
+<CodeSurfer
+    code={simpleActor}
+    title='Untyped Actor'
+    steps={[
+        { range: [1, 17], notes: "Generally I avoid using Untyped Actors as they aren't as clean." },
+        { lines: [4, 5, 15], notes: "For Untyped, we override the onReceive method" },
+        { tokens: {4: [7]}, notes: "Comes through as an object, no type info available" },
+        { range: [6, 14], notes: "Generally use a switch to get type, and take appropriate action"}
+    ]}
 />
 
 ---
 
-<CodeSurfer 
-    code={code} 
-    title='egads' 
-    notes= 'wat'
+<CodeSurfer
+    code={receiveActor}
+    title='ReceiveActor'
     steps={[
-        { range: [2, 7], notes: "we'll start with an example from petabridge" },
+        { range: [1, 20], notes: "" },
+        { range: [4, 8], notes: "Receive handlers can only be registered in the Constructor or a Behavior (more on that later)" },
+        { range: [6, 7], notes: "Handlers have priority in the order they are declared." },
+        { tokens: {6: [0,1,2,3]}, notes: "Receive takes a type that it is responsible for." },
+        { tokens: {6: [5]}, notes: "The handler needs to return void, and take the same type as it's argument." },
+        { tokens: {7: [1]}, notes: "ReceiveAny will accept any type. Works here as a catch all." },
+        { ranges: [[10, 13], [15, 18]], notes: "Receive handlers must be synchronous." }
     ]}
 />
+
+---
+export default Invert
+
+# Behaviors
+<Appear>
+<p>Behaviors enable a ReceiveActor to change how it handles messages.</p>
+<p>Two primary methods, Become and BecomeStacked:</p>
+<div>
+    <h4>Become:</h4>
+        <p>Calls a method to register new Receive handlers.</p>
+        <p>Become is generally preferred over BecomeStacked.</p>
+</div>
+<div>
+    <h4>BecomeStacked:</h4>
+        <p>The same as Become, but retains the previous set of behavios in the stack</p>
+        <p>May call Unbecome to revert to previous behavior.</p>
+</div>
+</Appear>
+
+---
+export default Invert
+
+# Stash
+<Appear>
+<p>The stash allows an actor to defer handling messages until later.</p>
+<p>When messages are removed from the stash, they are inserted at the front of the mailbox queue.</p>
+<p>Two methods to unstash messages:</p>
+<div>
+    <h4>Unstash:</h4>
+    <p>Unstashes a single message from the stash and places at the front of the mailbox.</p>
+    <p>Running this multiple times will result in the messages from the stash being in reverse order.</p>
+</div>
+<div>
+    <h4>UnstashAll:</h4>
+    <p>Unstashes all messages in stash and places in the front of the mailbox.</p>
+    <p>This retains the messages in the order they were stashed.</p>
+</div>
+</Appear>
+
+---
+
+<CodeSurfer
+    title='Behaviors and Stash'
+    code={behaviorActor}
+    steps={[
+        { range: [2, 32], notes: "" },
+        { range: [6, 9], notes: "The constructor can set initial behaviors without calling Become." },
+        { ranges: [[11,15],[17,20]], notes: "This actor has two behaviors." },
+        { range: [13, 14], notes: "The 'Waiting' behavior stashes all messages while waiting for a ServerUp message." },
+        { tokens: {14: [5,6,7,8,9]}, notes: "Note that the message does not need to be passed into the Stash method." },
+        { tokens: {13: [8,9,10]}, notes: "Once a ServerUp message is received, BecomeAvailable is called." },
+        { range: [22, 26], notes: "BecomeAvailable changes the behavior to Available and unstashes any messages received." },
+    ]}
+/>
+
+---
+export default Invert
+
+# Asynchronous Work
+<Appear>
+<p>Two main ways to handle aync work.</p>
+<div>
+    <h4>ReceiveAsync:</h4>
+    <p>Allows you to use async await.</p>
+    <p>Blocks the actor from doing any additional work while the async handler is running.</p>
+    <p>Can be useful for intentional rate limiting.</p>
+</div>
+<div>
+    <h4>ContinueWith().PipeTo:</h4>
+    <p>Generally preferred method, is non blocking</p>
+    <p>ContinueWith() is similar to a promise.then()</p>
+    <p>PipeTo sends the result of the Continuewith method as a message to an actor of your choice</p>
+</div>
+</Appear>
+
+---
+
+<CodeSurfer
+    code={asyncActor}
+    title='Async Actor'
+    steps={[
+        { range: [2, 25], notes: "" },
+        { range: [6, 7], notes: "This actor has both a ReceiveAsync and a Receive handler" },
+        { range: [10, 15], notes: "The receiveAsync handler, gets to use async await, but will block this actor from other work." },
+        { range: [17, 24], notes: "The receive handler does the same work, but in a non-blocking fasion."},
+    ]}
+/>
+
+---
+export default Invert
+
+# Routers
+<Appear>
+<p>Routers allow you to automatically distribute work among a group of Actors.</p>
+<p>Routers may be configured programmatically, or in a HOCON config file.</p>
+<p>There are two general types of routers:</p>
+<div>
+    <p>Pool routers create their own child Actors based on the number of instances you configure.</p>
+    <p>Group routers route between existing Actors you configure.</p>
+</div>
+<ul>
+    <li>There are several routing strategies available:</li>
+    <ul>
+        <li>RoundRobin</li>
+        <li>SmallestMailbox</li>
+        <li>ConsistentHash</li>
+    </ul>
+</ul>
+<p><i>Routers can also be configured to automatically scale. This is outside the scope of this brownbag.</i></p>
+</Appear>
+
+---
+
+<CodeSurfer
+    code={routerActor}
+    title='Router'
+    steps={[
+        { range: [2, 15], notes: "" },
+        { range: [8, 11], notes: "_workers is created as a Pool Router." },
+        { lines: [9], notes: "This line creates a RoundRobinPool which will create 5 Worker actors, and distribute messages amongst them." },
+        { lines: [13], notes: "Upon receiving a job, the actor forwards it to the pool." },
+        { tokens: {13: [9]}, notes: "forward retains the original sender" }
+    ]}
+/>
+
+---
+export default Invert
+
+# Getting a reference to an Actor
+* You should generally only communicate directly to certain Actors to avoid coupling:
+    * Your parent, or child Actors.
+    * The Sender of the message you are processing.
+    * Actors you receive references to in your constructor/props.
+    * Top Level Actors:
+        * These are generally an API managing a type of work
+        * You will generally either have a system object with an IActorRef or an Actor Address listing.
+
+---
+
+# Sending Messages
+There are two primary ways to send a message:
+* Tell
+    * Tell is non blocking, and does not expect a response.
+    * Tell is almost always the correct choice.
+* Ask
+    * Ask is an async method.
+    * Expects a response.
+    * Often used when getting data from outside the Actor System.
+
+---
+export default Invert
+
+# Actor Heirarchy
+
+<Mermaid
+    chart={akkaHeirarchy}
+/>
+
+---
+
+# Demo Project 
+A simple web crawler with some obvious improvements.

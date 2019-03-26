@@ -41,13 +41,20 @@
                             </div>
                             <div class='card-body'>
                                 <h5 v-if='job.internalLinks.length > 0'>Internal Links</h5>
-                                <ul>
-                                    <li v-for='link in job.internalLinks'>{{ link }}</li>
-                                </ul>
+                                <div style='max-height: 150px; overflow-y: scroll'>
+                                    <ul>
+                                        <li v-for='link in job.internalLinks'>{{ link }}</li>
+                                    </ul>
+                                </div>
                                 <h5 v-if='job.externalLinks.length > 0'>External Links</h5>
-                                <ul>
-                                    <li v-for='link in job.externalLinks'>{{ link }}</li>
-                                </ul>
+                                <div style='max-height: 150px; overflow-y: scroll;'>
+                                    <ul>
+                                        <li v-for='link in job.externalLinks'>{{ link }}</li>
+                                    </ul>
+                                </div>
+                                <div v-if='job.internalLinks.length == 0 && job.externalLinks.length == 0 && job.status =="done"' class='alert alert-dark'>
+                                    No links found, site may be a SPA.
+                                </div>
                             </div>
                             <div class='card-footer text-right'>
                                 <button type='button' class='btn btn-info' v-on:click='start(job)'>Start</button>
