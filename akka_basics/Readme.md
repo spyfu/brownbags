@@ -16,6 +16,16 @@ yarn build
 ## /code
 Example code for brown bag.
 
+__Build__
+```bash
+dotnet build
+```
+
+__Run__
+```bash
+dotnet run
+```
+
 ### Challenges:
 _Solutions available __soon__ in /challenges/1, /challenges/2, etc_
 1. Can you make the crawl non-blocking?
